@@ -1,17 +1,41 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const App = () => {
+  const [count, setCount] = useState(0);
+  const onButtonClickAdd = () => {
+    setCount(count + 1);
+  };
+  const onButtonClickSubtract = () => {
+    setCount(count-1);
+  };
+  return (
+    <div>
+      <div>
+        <button className="ui button" 
+        style={{color:'blue',backgroundColor:'yellow'}}
+          onClick={() => {
+            onButtonClickAdd();
+          }}
+        >
+          Click Me To Add To The Count!
+        </button>
+      </div>
+      <div style={{marginTop:'10px'}}>
+        <button className="ui button"
+        style={{color:'red',backgroundColor:'black'}}
+          onClick={() => {
+            onButtonClickSubtract();
+          }}
+        >
+          Click Me To Subtract From The Count!
+        </button>
+      </div>
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+      <h1>Current Count: {count}</h1>
+      <div></div>
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.querySelector("#root"));
